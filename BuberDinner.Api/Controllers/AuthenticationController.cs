@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers;
 
-[ApiController]
 [Route("auth")]
-public class AuthenticationController : ControllerBase
+public class AuthenticationController : ApiController
 {
     private readonly IAuthenticationService authenticationService;
 
@@ -18,36 +17,42 @@ public class AuthenticationController : ControllerBase
     [HttpPost("register")]
     public IActionResult Register(RegisterRequest request)
     {
-        var authResult = authenticationService.Register(
+        var registeResult = authenticationService.Register(
             request.FirstName, 
             request.LastName, 
             request.Email, 
             request.Password);
 
-        var response = new AuthenticationResponse(
-            authResult.Id,
-            authResult.FirstName,
-            authResult.LastName,
-            authResult.Email,
-            authResult.Token);
-
-        return Ok(response);
+        return registeResult.Match(
+            authResult => Ok(MapAuthResult(authResult)),
+            errors => Problem(errors)
+        );
     }
 
     [HttpPost("login")]
     public IActionResult Login(LoginRequest request)
     {
-         var authResult = authenticationService.Login(
+         var loginResult = authenticationService.Login(
             request.Email, 
             request.Password);
 
-        var response = new AuthenticationResponse(
+        if(loginResult.IsError && loginResult.FirstError.Type == ErrorOr.ErrorType.Validation){
+            return Problem(statusCode: StatusCodes.Status401Unauthorized, title: loginResult.FirstError.Description);
+        }
+
+        return loginResult.Match(
+            authResult => Ok(MapAuthResult(authResult)),
+            errors => Problem(errors)
+        );
+    }
+
+    private object? MapAuthResult(AuthenticationResult authResult)
+    {
+        return new AuthenticationResponse(
             authResult.Id,
             authResult.FirstName,
             authResult.LastName,
             authResult.Email,
             authResult.Token);
-
-        return Ok(response);
     }
 }
