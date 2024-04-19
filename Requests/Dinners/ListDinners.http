@@ -1,0 +1,4 @@
+@host = https://localhost:7128
+ 
+Get  {{host}}/dinners
+Authorization: Bearer 
