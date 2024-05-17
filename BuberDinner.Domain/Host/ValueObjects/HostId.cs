@@ -4,14 +4,14 @@ namespace BuberDinner.Domain.Host.ValueObjects;
 
 public sealed class HostId : ValueObject
 {
-    public Guid Value { get; }
+    public string Value { get; }
 
-    public HostId(Guid value)
+    public HostId(string value)
     {
         Value = value;
     }
 
-    public static HostId CreateUnique() => new(Guid.NewGuid());
+    public static HostId Create(string hostId) => new(hostId);
 
     public override IEnumerable<object> GetEqualityComponents()
     {

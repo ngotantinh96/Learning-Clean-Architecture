@@ -7,10 +7,11 @@ public sealed class MenuSection : Entity<MenuSectionId>
 {
     private readonly List<MenuItem> _items = [];
 
-    public MenuSection(MenuSectionId id, string name, string description) : base(id)
+    public MenuSection(MenuSectionId id, string name, string description, List<MenuItem>? items) : base(id)
     {
         Name = name;
         Description = description;
+        _items = items ?? [];
     }
 
     public string Name { get; }
@@ -18,6 +19,6 @@ public sealed class MenuSection : Entity<MenuSectionId>
     
     public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
 
-    public static MenuSection Create(string name, string description)
-        => new(MenuSectionId.CreateUnique(), name, description);
+    public static MenuSection Create(string name, string description, List<MenuItem>? items)
+        => new(MenuSectionId.CreateUnique(), name, description, items);
 }

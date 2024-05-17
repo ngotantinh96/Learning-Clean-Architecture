@@ -1,0 +1,24 @@
+@host = https://localhost:7128
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Njc1MDg2NS1iODk3LTQ1MjEtOTk0NS01MGZkNDM2YzBlNzQiLCJnaXZlbl9uYW1lIjoiQW1pY2hhaSIsImZhbWlseV9uYW1lIjoiTWFudGluYmFuZCIsImp0aSI6ImU2MjYxODBkLTIwYzktNDQ0Zi1iZjY5LWMwNDE4NTNmNDVhYyIsImV4cCI6MTcxNTkyMDUwOCwiaXNzIjoiQnViZXJEaW5uZXIiLCJhdWQiOiJCdWJlckRpbm5lciJ9.cExKkIpCDkFb-wktmJz58-LVHflrmVrSLceBy_yjH7I
+@hostId = asdasd
+
+Post  {{host}}/host/{{hostId}}/menus
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Yummy Menu",
+    "description": "Start Meal",
+    "sections": [
+        {
+            "name": "Yummy Menu Section",
+            "description": "Start Meal Section",
+            "items": [
+                {
+                    "name": "Yummy Menu Item",
+                    "description": "Start Meal Item"
+                }
+            ]
+        }
+    ]
+}

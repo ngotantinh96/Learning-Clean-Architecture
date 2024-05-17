@@ -2,7 +2,7 @@ using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
 using BuberDinner.Application.Services.Authentication.Common;
 using BuberDinner.Domain.Common.Errors;
-using BuberDinner.Domain.Entities;
+using BuberDinner.Domain.Common.Entities;
 using ErrorOr;
 
 namespace BuberDinner.Application.Services.Authentication.Commands;
