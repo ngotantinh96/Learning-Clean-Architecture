@@ -4,6 +4,7 @@ namespace BuberDinner.Domain.Menu.ValueObjects;
 
 public sealed class AverageRatting : ValueObject
 {
+    public int NumRatings { get; }
     public float Value { get; }
 
     public AverageRatting(float value)

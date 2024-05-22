@@ -25,10 +25,12 @@ public sealed class Menu : AggregateRoot<MenuId>
 
     public string Name { get; }
     public string Description { get; }
+
     public AverageRatting AverageRating { get; }
+    public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
+
     public HostId HostId { get; }
 
-    public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
     public IReadOnlyList<DinnerId> DinnerIds => _dinnerIds.AsReadOnly();
     public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewId.AsReadOnly();
 
