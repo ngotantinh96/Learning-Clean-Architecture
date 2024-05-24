@@ -1,5 +1,5 @@
 using BuberDinner.Application.Common.Interfaces.Persistence;
-using BuberDinner.Domain.Menu;
+using BuberDinner.Domain.MenuAggregate;
 
 namespace BuberDinner.Infrastructure.Persistence.Repositories;
 

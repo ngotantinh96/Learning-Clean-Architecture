@@ -1,6 +1,6 @@
 using BuberDinner.Application.Menus;
 using BuberDinner.Contracts.Menus;
-using BuberDinner.Domain.Menu;
+using BuberDinner.Domain.MenuAggregate;
 using Mapster;
 
 namespace BuberDinner.Api.Mapping;
@@ -20,10 +20,10 @@ public class MenuMappingConfig : IRegister
             .Map(dest => dest.DinnerIds, src => src.DinnerIds.Select(dinnerId => dinnerId.Value))
             .Map(dest => dest.MenuReviewIds, src => src.MenuReviewIds.Select(menuReviewId => menuReviewId.Value));
 
-        config.NewConfig<Domain.Menu.Entities.MenuSection, MenuSectionResponse>()
+        config.NewConfig<Domain.MenuAggregate.Entities.MenuSection, MenuSectionResponse>()
             .Map(dest => dest.Id, src => src.Id.Value);
 
-        config.NewConfig<Domain.Menu.Entities.MenuItem, MenuItemResponse>()
+        config.NewConfig<Domain.MenuAggregate.Entities.MenuItem, MenuItemResponse>()
             .Map(dest => dest.Id, src => src.Id.Value);
     }
 }

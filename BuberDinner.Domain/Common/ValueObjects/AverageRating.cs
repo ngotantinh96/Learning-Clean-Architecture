@@ -1,13 +1,17 @@
-using BuberDinner.Domain.Models;
+using BuberDinner.Domain.Common.Models;
 
 namespace BuberDinner.Domain.Common.ValueObjects;
 
 public sealed class AverageRating : ValueObject
 {
-    public AverageRating(double value, int numRatings)
+    private AverageRating(double value, int numRatings)
     {
         Value = value;
         NumRatings = numRatings;
+    }
+
+    private AverageRating()
+    {
     }
 
     public double Value { get; private set; }

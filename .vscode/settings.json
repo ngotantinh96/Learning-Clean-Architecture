@@ -1,3 +1,20 @@
 {
-    "dotnet.defaultSolution": "BuberDinner.sln"
+    "dotnet.defaultSolution": "BuberDinner.sln",
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1433,
+            "driver": "MSSQL",
+            "name": "BuberDinner",
+            "database": "BuberDinner",
+            "username": "recfind",
+            "password": "recfind"
+        }
+    ]
 }

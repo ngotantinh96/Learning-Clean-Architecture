@@ -1,12 +1,16 @@
-using BuberDinner.Domain.Models;
+using BuberDinner.Domain.Common.Models;
 
 namespace BuberDinner.Domain.Common.ValueObjects;
 
 public sealed class Rating : ValueObject
 {
-    public Rating(double value)
+    private Rating(double value)
     {
         Value = value;
+    }
+
+    private Rating()
+    {
     }
 
     public double Value { get; private set; }

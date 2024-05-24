@@ -1,14 +1,18 @@
-using BuberDinner.Domain.Models;
+using BuberDinner.Domain.Common.Models;
 
-namespace BuberDinner.Domain.MenuReview.ValueObjects;
+namespace BuberDinner.Domain.MenuReviewAggregate.ValueObjects;
 
 public sealed class MenuReviewId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
-    public MenuReviewId(Guid value)
+    private MenuReviewId(Guid value)
     {
         Value = value;
+    }
+
+    private MenuReviewId()
+    {
     }
 
     public static MenuReviewId CreateUnique() => new(Guid.NewGuid());

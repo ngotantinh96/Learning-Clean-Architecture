@@ -1,14 +1,18 @@
-using BuberDinner.Domain.Models;
+using BuberDinner.Domain.Common.Models;
 
-namespace BuberDinner.Domain.Dinner.ValueObjects;
+namespace BuberDinner.Domain.DinnerAggregate.ValueObjects;
 
 public sealed class DinnerId : ValueObject
 {
-    public Guid Value { get; }
+    public Guid Value { get; private set; }
 
-    public DinnerId(Guid value)
+    private DinnerId(Guid value)
     {
         Value = value;
+    }
+
+    private DinnerId()
+    {
     }
 
     public static DinnerId CreateUnique() => new(Guid.NewGuid());
