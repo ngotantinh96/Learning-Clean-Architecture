@@ -5,7 +5,7 @@ using BuberDinner.Domain.MenuAggregate.Entities;
 using ErrorOr;
 using MediatR;
 
-namespace BuberDinner.Application.Menus;
+namespace BuberDinner.Application.Menus.Commands.CreateMenuCommand;
 
 public class CreateMenuCommandHandler : IRequestHandler<CreateMenuCommand, ErrorOr<Menu>>
 {

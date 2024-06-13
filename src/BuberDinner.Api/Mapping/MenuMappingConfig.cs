@@ -1,4 +1,4 @@
-using BuberDinner.Application.Menus;
+using BuberDinner.Application.Menus.Commands.CreateMenuCommand;
 using BuberDinner.Contracts.Menus;
 using BuberDinner.Domain.MenuAggregate;
 using Mapster;
