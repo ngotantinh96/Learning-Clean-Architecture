@@ -1,19 +1,17 @@
 namespace BuberDinner.Domain.Common.Models;
 
-public abstract class Entity<TId> : IEquatable<Entity<TId>>
-    where TId : notnull
+public abstract class Entity<TId> : IEquatable<Entity<TId>>, IHasDomainEvents
+    where TId : ValueObject
 {
+    private readonly List<IDomainEvent> _domainEvents = [];
+
     public TId Id { get; protected set; }
+
+    public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     protected Entity(TId id)
     {
         Id = id;
-    }
-
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    protected Entity()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-    {
     }
 
     public override bool Equals(object? obj)
@@ -28,16 +26,32 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
 
     public static bool operator ==(Entity<TId> left, Entity<TId> right)
     {
-        return Equals(right, right);
+        return Equals(left, right);
     }
 
     public static bool operator !=(Entity<TId> left, Entity<TId> right)
     {
-        return !Equals(right, right);
+        return !Equals(left , right);
     }
 
     public override int GetHashCode()
     {
         return Id.GetHashCode();
+    }
+
+    public void AddDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    protected Entity()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
     }
 }
